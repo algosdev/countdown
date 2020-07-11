@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp"
+    crossorigin="anonymous">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
+    crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+  <title>Countdown</title>
+</head>
+
+<body>
+<div class="container text-center">
+    <div class="inputget">
+        <h1 class="display-4">Select Date</h1>
+        <p class="lead">then left/passed time will appear below </p>
+    <input type="text" onfocus="(this.type='date')" class=" date mx-auto" placeholder="Day/Month/Year">
+    </div>
+    <div class="result d-flex justify-content-center mx-auto ">
+        <span><span class="ds num">0</span><p>D</p></span>
+        <span><span class="hs num">0</span><p>H</p></span>
+        <span><span class="ms num">0</span><p>M</p></span>
+        <span><span class="ss num">0</span><p>S</p></span>
+    </div>
+    <h1 class="display-3"></h1>
+</div>
+<script>
+    const input = document.querySelector('.date');
+    const hours = document.querySelector('.hs');
+    const days = document.querySelector('.ds');
+    const minutes = document.querySelector('.ms');
+    const seconds = document.querySelector('.ss');
+    var iGot;
+    var dif;
+    input.addEventListener('change', function(e){
+        e.preventDefault();
+        setInterval(update , 500);
+    });
+    function update(){
+        const cTime = new Date();
+        console.log(cTime);
+        iGot = new Date(input.value);
+        console.log(iGot);
+        var int1 = Date.parse(iGot);
+        var int2 = Date.parse(cTime);
+        console.log(int1);
+        console.log(int2);
+        dif = int1 - int2;
+        console.log(dif);
+        const d = parseInt((dif/1000)/(3600*24));
+        const h = parseInt((dif/1000)/(3600)-d*24);
+        const m = parseInt((dif/1000)/(60) - d*24*60 - h*60);
+        const s = parseInt((dif/1000) - d*24*3600 - h*3600 - m*60);
+        console.log(d + " days");
+        console.log(h + " hours");
+        console.log(m + " minutes");
+        console.log(s + " seconds");
+        days.innerHTML = d;
+        hours.innerHTML = h;
+        minutes.innerHTML = m;
+        seconds.innerHTML = s;
+        var inf = "Left";
+        if(dif<0){
+        days.innerHTML = -d;
+        hours.innerHTML = -h;
+        minutes.innerHTML = -m;
+        seconds.innerHTML = -s;
+            inf = "Passed"
+        }
+        document.querySelector('.display-3').innerHTML = inf;
+    }
+</script>
+  <script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
+    crossorigin="anonymous"></script>
+  <script>
+    $('#year').text(new Date().getFullYear());
+  </script>
+</body>
+</html>

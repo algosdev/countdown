@@ -1,0 +1,21 @@
+body {
+    background: #a5a5a5;
+}
+.inputget {
+    margin-top: 100px;
+    margin-bottom: 20px;
+    font-size: 25px;
+
+}
+.num {
+    font-size: 2em;
+    margin: 5px;
+    padding: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 8px;
+    background: rgb(95, 104, 223);
+}
+span p {
+    font-size: 0.8em;
+}
